@@ -7,15 +7,15 @@
 
     <fragment
         android:id="@+id/navigation_home"
-        android:name="com.inovasiti.intermediate_android_kotlin.ui.home.HomeFragment"
+        android:name="com.inovasiti.intermediate_android_kotlin.ui.task.TaskListFragment"
         android:label="@string/title_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_task_list" />
 
     <fragment
         android:id="@+id/navigation_dashboard"
-        android:name="com.inovasiti.intermediate_android_kotlin.ui.dashboard.DashboardFragment"
+        android:name="com.inovasiti.intermediate_android_kotlin.ui.note.NoteListFragment"
         android:label="@string/title_dashboard"
-        tools:layout="@layout/fragment_dashboard" />
+        tools:layout="@layout/fragment_note_list" />
 
     <fragment
         android:id="@+id/navigation_notifications"
