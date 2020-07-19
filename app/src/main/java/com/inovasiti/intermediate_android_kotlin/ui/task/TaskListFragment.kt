@@ -9,6 +9,7 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.inovasiti.intermediate_android_kotlin.R
 import com.inovasiti.intermediate_android_kotlin.model.Task
+import com.inovasiti.intermediate_android_kotlin.model.Todo
 import kotlinx.android.synthetic.main.fragment_task_list.*
 
 class TaskListFragment : Fragment() {
@@ -36,7 +37,10 @@ class TaskListFragment : Fragment() {
         //after view has been created
         rv.layoutManager = LinearLayoutManager(context)
         val adapter = TaskAdapter(mutableListOf(
-            Task("Test 1"),
+            Task("Test 1", mutableListOf(
+                Todo("Test todo1",true),
+                Todo("Test todo2")
+            )),
             Task("Test 2"),
             Task("Test 3")
         ))

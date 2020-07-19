@@ -40,8 +40,8 @@ data class Task @JvmOverloads constructor(
 
 data class Todo(
     var description: String,
-    var isComplete: Boolean
-    //kotlit dont have primitive type eg. boolean or int
+    var isComplete: Boolean = false
+    //kotlit dont have primitive type eg. boolean or int . def value is  = false
 )
 
 data class Note(
