@@ -16,10 +16,4 @@
         android:name="com.inovasiti.intermediate_android_kotlin.ui.note.NoteListFragment"
         android:label="@string/title_dashboard"
         tools:layout="@layout/fragment_note_list" />
-
-    <fragment
-        android:id="@+id/navigation_notifications"
-        android:name="com.inovasiti.intermediate_android_kotlin.ui.notifications.NotificationsFragment"
-        android:label="@string/title_notifications"
-        tools:layout="@layout/fragment_notifications" />
 </navigation>
