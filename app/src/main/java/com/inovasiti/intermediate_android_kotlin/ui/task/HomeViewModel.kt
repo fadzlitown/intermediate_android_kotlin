@@ -10,11 +10,25 @@ class HomeViewModel : ViewModel() {
     private val mText: MutableLiveData<String>
     val text: LiveData<String> get() = mText
 
+    //List of task (mutable-yg boleh di ubah2)
+    private val _taskListLiveData: MutableLiveData<MutableList<Task>> = MutableLiveData()
+
+    //taskListLiveData is a public, & to be used in view fragment / activity
+    val taskListLiveData: LiveData<MutableList<Task>> = _taskListLiveData
+
+    //special fun will runs when constructor is made
     init {
+        //list of data
+        //1. this is synchronous process use ".value", if you know what needs to assign in here
+//        _taskListLiveData.value = getFakeData()
+        //2. this is asynchronous process, use "postValue".  async value to live data for those observers (in fragment / activity)
+        _taskListLiveData.postValue(getFakeData())
+
         mText = MutableLiveData()
         mText.value = "This is home fragment"
     }
 
+    //business logic & data should be in this class
     fun getFakeData(): MutableList<Task> = mutableListOf(
         Task(
             "Test 1", mutableListOf(

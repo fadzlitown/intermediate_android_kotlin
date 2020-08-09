@@ -18,6 +18,13 @@ class TaskAdapter(
     val touchActionCallback : TaskListFragment.TouchActionCallback
 
 ) : BaseRecyclerView<Task>(taskList) {
+
+    override fun updateList(list: MutableList<Task>) {
+        masterList.clear()
+        masterList.addAll(list)
+        notifyDataSetChanged()
+    }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         //return based on viewType & the right viewholder
         return if (viewType == TYPE_ADD_BUTTON) {

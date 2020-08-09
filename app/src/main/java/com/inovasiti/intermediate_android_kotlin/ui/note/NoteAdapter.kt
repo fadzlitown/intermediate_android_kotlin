@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.inovasiti.intermediate_android_kotlin.BottomNavigationActivity
 import com.inovasiti.intermediate_android_kotlin.R
 import com.inovasiti.intermediate_android_kotlin.model.Note
+import com.inovasiti.intermediate_android_kotlin.model.Task
 import com.inovasiti.intermediate_android_kotlin.ui.foundations.BaseRecyclerView
 import com.inovasiti.intermediate_android_kotlin.views.NoteView
 import kotlinx.android.synthetic.main.view_add_button.view.*
@@ -14,8 +15,9 @@ import kotlinx.android.synthetic.main.view_add_button.view.*
 class NoteAdapter(
     noteList: MutableList<Note> = mutableListOf(),
     val touchActionCallback: NoteListFragment.TouchActionCallback
-
 ) : BaseRecyclerView<Note>(noteList) {
+
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         if(viewType == TYPE_ADD_BUTTON){
             return AddButtonViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.view_add_button,parent,false))
@@ -41,5 +43,11 @@ class NoteAdapter(
                 touchActionCallback.onAddButtonClicked(BottomNavigationActivity.FRAG_VALUE_NOTE)
             }
         }
+    }
+
+    override fun updateList(list: MutableList<Note>) {
+        masterList.clear()
+        masterList.addAll(list)
+        notifyDataSetChanged()
     }
 }

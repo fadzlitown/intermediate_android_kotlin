@@ -3,6 +3,7 @@ package com.inovasiti.intermediate_android_kotlin.ui.foundations
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 import com.inovasiti.intermediate_android_kotlin.R
+import com.inovasiti.intermediate_android_kotlin.model.Note
 import com.inovasiti.intermediate_android_kotlin.ui.task.TaskAdapter
 import kotlinx.android.synthetic.main.view_add_button.view.*
 
@@ -40,6 +41,8 @@ abstract class BaseRecyclerView<T>(
 
     //Unit type = to the `void` type in Java
     abstract class AddButtonViewHolder(val view: View) : BaseViewHolder<Unit>(view)
+
+    abstract fun updateList(list : MutableList<T>)
 
     //constants val
     companion object {
