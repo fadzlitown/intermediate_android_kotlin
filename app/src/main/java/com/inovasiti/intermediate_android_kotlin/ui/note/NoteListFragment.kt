@@ -6,13 +6,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.inovasiti.intermediate_android_kotlin.R
 import com.inovasiti.intermediate_android_kotlin.model.Note
 import kotlinx.android.synthetic.main.fragment_note_list.*
 
 class NoteListFragment : Fragment() {
-    private var dashboardViewModel: NoteListViewModel? = null
+    lateinit var noteViewModel: NoteListViewModel
     lateinit var touchActionCallback: NoteListFragment.TouchActionCallback
 
     companion object {
@@ -36,21 +37,18 @@ class NoteListFragment : Fragment() {
         container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
         val root = inflater.inflate(R.layout.fragment_note_list, container, false)
+        noteViewModel = ViewModelProviders.of(this).get(NoteListViewModel::class.java)
         return root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        rv.layoutManager  = LinearLayoutManager(context)
-        rv.adapter = NoteAdapter(mutableListOf(
-            Note("asdasdas"),
-            Note("HAHAHA"),
-            Note("powerrr")
-        ),touchActionCallback)
+        rv.layoutManager = LinearLayoutManager(context)
+        rv.adapter = NoteAdapter(noteViewModel.getFakeData(), touchActionCallback)
     }
 
     interface TouchActionCallback {
-        fun onAddButtonClicked(value : String)
+        fun onAddButtonClicked(value: String)
     }
 
 

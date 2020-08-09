@@ -14,7 +14,7 @@ import com.inovasiti.intermediate_android_kotlin.model.Todo
 import kotlinx.android.synthetic.main.fragment_task_list.*
 
 class TaskListFragment : Fragment() {
-    private var taskListViewModel: HomeViewModel? = null
+    lateinit var taskListViewModel: HomeViewModel
 
     lateinit var touchActionCallback: TouchActionCallback
 
@@ -37,10 +37,9 @@ class TaskListFragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater,
-        container: ViewGroup?, savedInstanceState: Bundle?
-    ): View? {
-        taskListViewModel = ViewModelProviders.of(this).get(HomeViewModel::class.java)
+        container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val root = inflater.inflate(R.layout.fragment_task_list, container, false)
+        bindViewModel()
         return root
     }
 
@@ -48,19 +47,12 @@ class TaskListFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         //after view has been created
         rv.layoutManager = LinearLayoutManager(context)
-        val adapter = TaskAdapter(
-            mutableListOf(
-                Task(
-                    "Test 1", mutableListOf(
-                        Todo("Test todo1", true),
-                        Todo("Test todo2")
-                    )
-                ),
-                Task("Test 2"),
-                Task("Test 3")
-            )
-        ,touchActionCallback)
+        val adapter = TaskAdapter(taskListViewModel.getFakeData(),touchActionCallback)
         rv.adapter = adapter
+    }
+
+    private fun bindViewModel(){
+        taskListViewModel = ViewModelProviders.of(this).get(HomeViewModel::class.java)
     }
 
     interface TouchActionCallback {
